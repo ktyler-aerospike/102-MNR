@@ -1,0 +1,31 @@
+services:
+  aspk-102-node-1:    
+    image: aero-102_mnr
+    container_name: aspk-multi-1
+    
+    volumes:
+      - ${PWD}:/etc/aerospike
+     
+    command: --config-file /etc/aerospike/aerospike.conf
+ 
+    networks:
+      - aspk-network
+    restart: unless-stopped
+
+  aspk-102-node-2:
+    image: aero-102_mnr
+    container_name: aspk-multi-2
+
+    volumes:
+      - ${PWD}:/etc/aerospike
+
+    command: --config-file /etc/aerospike/aerospike.conf
+
+    networks:
+      - aspk-network
+    restart: unless-stopped
+
+
+networks:
+  aspk-network:
+    driver: bridge
